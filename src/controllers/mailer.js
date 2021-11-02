@@ -1,18 +1,17 @@
 const nodemailer = require("nodemailer");
-const Avatar = require("../models/avatar");
 const moment = require("moment");
 
 const sendEmail = async (req, res) => {
-  const {code, message, clicks ,email} = req.body;
-  const {name} = await Avatar.findOne({ _id: req.params.id });
+  const {code, clicks ,email,name,selections} = req.body;
+  console.log(req.body);
   const date = moment().format("MMMM Do YYYY, h:mm:ss a");
   if (
     !email ||
     email == "" ||
     !code ||
     code == "" ||
-    !message ||
-    message == "" ||
+    !selections ||
+    selections == "" ||
     !name ||
     name == "" ||
     !date ||
@@ -33,7 +32,7 @@ const sendEmail = async (req, res) => {
     let mailOptions = {
       to: email,
       subject: "repuesta de la evaluacion percentual codigo: " + code + " realizada por el estudiante " + name,
-      text: "Descripcion del estudiante: " + message + ", fecha " + date + `, El estudiante reprodujo el audio ` + clicks + ` veces`,
+      text: "Descripcion del estudiante: " + selections + ", fecha " + date + `, El estudiante reprodujo el audio ` + clicks + ` veces`,
     };
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {

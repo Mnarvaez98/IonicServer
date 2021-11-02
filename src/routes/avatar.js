@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const avatar = require('../controllers/avatar');
-// const mailer = require("../controllers/mailer");
+const mailer = require("../controllers/mailer");
 
 router.get("/streak/:id" , avatar.getStreakDays);
 
@@ -23,6 +23,6 @@ router.get("/userData/:id", avatar.userData);
 
 router.post("/register", avatar.register);
 
-// router.post("/sendemail", mailer.sendEmail);
+router.post("/sendEmail/:id", mailer.sendEmail);
 
 module.exports = router;

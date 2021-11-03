@@ -26,7 +26,7 @@ AvatarSchema.methods.generateJWT = function () {
       semester: this.semester,
       iat: moment().unix(),
     },
-    process.env.SECRET_KEY_JWT
+    "secret"
   );
 };
 

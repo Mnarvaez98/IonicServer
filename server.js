@@ -15,7 +15,7 @@ app.use("/auth", require("./src/routes/auth"));
 // data base connection
 async function connect() {
   try {
-    await mongoose.connect(process.env.DB, {
+    await mongoose.connect("mongodb+srv://ejemplo:ejemplo@cluster0.pwo3c.mongodb.net/bancovoces?retryWrites=true&w=majority", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
@@ -28,7 +28,7 @@ async function connect() {
   }
 }
 
-app.listen(process.env.PORT, () => {
-  console.log("Servidor: ", process.env.PORT);
+app.listen(3020, () => {
+  console.log("Servidor: ", 3020);
 });
 connect();

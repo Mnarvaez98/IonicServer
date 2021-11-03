@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 const moment = require("moment");
 
 const sendEmail = async (req, res) => {
-  const { code, clicks, email, name, selections } = req.body;
+  const { code, clicks, email, name, selections,audioId } = req.body;
   console.log(req.body);
   const date = moment().format("MMMM Do YYYY, h:mm:ss a");
   if (
@@ -52,7 +52,8 @@ const sendEmail = async (req, res) => {
         date +
         `, El estudiante reprodujo el audio ` +
         clicks +
-        ` veces`,
+        ` veces,` + 
+        "Datos obtenidos para el audio de Id " + audioId,
     };
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {

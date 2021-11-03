@@ -40,7 +40,7 @@ const sendEmail = async (req, res) => {
       text:
         "Estudiante de " +
         semester +
-        ". Selecciono dio las siguientes respuestas: ->>" +
+        ". Selecciono las siguientes respuestas: ->>" +
         "Grado: " +
         selections.Grado +
         ", Soplocidad: " +

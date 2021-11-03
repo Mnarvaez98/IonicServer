@@ -3,7 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const app = express();
+app = express();
 app.use(express.json());
 app.use(cors());
 app.use("/voces", require("./src/routes/voces"));
@@ -15,7 +15,7 @@ app.use("/auth", require("./src/routes/auth"));
 // data base connection
 async function connect() {
   try {
-    await mongoose.connect("mongodb+srv://ejemplo:ejemplo@cluster0.pwo3c.mongodb.net/bancovoces?retryWrites=true&w=majority", {
+    await mongoose.connect(process.env.DB, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
@@ -28,7 +28,7 @@ async function connect() {
   }
 }
 
-app.listen(3020, () => {
-  console.log("Servidor: ", 3020);
+app.listen(process.env.PORT, () => {
+  console.log("Servidor: ", process.env.PORT);
 });
 connect();

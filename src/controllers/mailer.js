@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 const moment = require("moment");
 
 const sendEmail = async (req, res) => {
-  const {code, clicks ,email,name,selections} = req.body;
+  const { code, clicks, email, name, selections } = req.body;
   console.log(req.body);
   const date = moment().format("MMMM Do YYYY, h:mm:ss a");
   if (
@@ -31,8 +31,28 @@ const sendEmail = async (req, res) => {
     });
     let mailOptions = {
       to: email,
-      subject: "repuesta de la evaluacion percentual codigo: " + code + " realizada por el estudiante " + name,
-      text: "Descripcion del estudiante: " + selections + ", fecha " + date + `, El estudiante reprodujo el audio ` + clicks + ` veces`,
+      subject:
+        "repuesta de la evaluacion percentual codigo: " +
+        code +
+        " realizada por el estudiante " +
+        name,
+      text:
+        "Descripcion del estudiante: " +
+        "Grado: " +
+        selections.Grado +
+        ", Soplocidad: " +
+        selections.Soplocidad +
+        ", Astenia: " +
+        selections.Astenia +
+        ", Tension: " +
+        selections.Tension +
+        ", Aspereza: " +
+        selections.Aspereza +
+        ", fecha " +
+        date +
+        `, El estudiante reprodujo el audio ` +
+        clicks +
+        ` veces`,
     };
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {

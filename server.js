@@ -17,7 +17,7 @@ app.use("/auth", require("./src/routes/auth"));
 
 // data base connection
 async function connect() {
-  const db = "mongodb://localhost:27017/bancovoces"; //"mongodb+srv://user:password@localhost:27017/bancovoces";
+  const db = "mongodb+srv://ejemplo:ejemplo@cluster0.pwo3c.mongodb.net/bancovoces?retryWrites=true&w=majority"; 
   try {
     await mongoose.connect(db, {
       useNewUrlParser: true,

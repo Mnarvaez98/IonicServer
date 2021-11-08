@@ -1,9 +1,12 @@
 const nodemailer = require("nodemailer");
 const moment = require("moment");
 const Avatar = require("../models/avatar");
+const Evaluation = require("../models/evaluation");
 
 const sendEmail = async (req, res) => {
   const { code, clicks, email, name, selections, audioId } = req.body;
+  const { Soplocidad, Grado, Astenia, Tension, Aspereza } =
+    await Evaluation.findOne({ audioId: audioId });
   const { semester } = await Avatar.findOne({ _id: req.params.id });
   const date = moment().format("MMMM Do YYYY, h:mm:ss a");
   if (
@@ -42,15 +45,15 @@ const sendEmail = async (req, res) => {
         semester +
         ". Selecciono las siguientes respuestas: ->>" +
         "Grado: " +
-        selections.Grado +
+        (selections.Grado==Grado?"Correcto":"Incorrecto") +
         ", Soplocidad: " +
-        selections.Soplocidad +
+        (selections.Soplocidad==Soplocidad?"Correcto":"Incorrecto") +
         ", Astenia: " +
-        selections.Astenia +
+        (selections.Astenia==Astenia?"Correcto":"Incorrecto") +
         ", Tension: " +
-        selections.Tension +
+        (selections.Tension==Tension?"Correcto":"Incorrecto") +
         ", Aspereza: " +
-        selections.Aspereza +
+        (selections.Aspereza==Aspereza?"Correcto":"Incorrecto") +
         "<<- en la fecha " +
         date +
         `, reprodujo el audio ` +

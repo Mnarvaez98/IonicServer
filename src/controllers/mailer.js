@@ -44,16 +44,16 @@ const sendEmail = async (req, res) => {
         "Estudiante de " +
         semester +
         ". Selecciono las siguientes respuestas: ->>" +
-        "Grado: " +
-        (selections.Grado==Grado?"Correcto":"Incorrecto") +
-        ", Soplocidad: " +
-        (selections.Soplocidad==Soplocidad?"Correcto":"Incorrecto") +
-        ", Astenia: " +
-        (selections.Astenia==Astenia?"Correcto":"Incorrecto") +
-        ", Tension: " +
-        (selections.Tension==Tension?"Correcto":"Incorrecto") +
-        ", Aspereza: " +
-        (selections.Aspereza==Aspereza?"Correcto":"Incorrecto") +
+        "Grado: " + selections.Grado +
+        (selections.Grado==Grado?" Correcto":" Incorrecto") +
+        ", Soplocidad: " + selections.Soplocidad +
+        (selections.Soplocidad==Soplocidad?" Correcto":" Incorrecto") +
+        ", Astenia: " + selections.Astenia +
+        (selections.Astenia==Astenia?" Correcto":" Incorrecto") +
+        ", Tension: " + selections.Tension +
+        (selections.Tension==Tension?" Correcto":" Incorrecto") +
+        ", Aspereza: " + selections.Aspereza +
+        (selections.Aspereza==Aspereza?" Correcto":" Incorrecto") +
         "<<- en la fecha " +
         date +
         `, reprodujo el audio ` +

@@ -215,6 +215,7 @@ const register = async (req, res) => {
 const saveProgress = async (req, res) => {
   try {
     const { userId } = req.params;
+    console.log(userId);
     const { evaluation, questions, test } = req.body;
     console.log(evaluation, questions, test);
     const avatar = await Avatar.findById(userId);

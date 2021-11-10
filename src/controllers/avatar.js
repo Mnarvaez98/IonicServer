@@ -165,13 +165,15 @@ const userData = async (req, res) => {
 
 const register = async (req, res) => {
   try {
-    let { name, password, semester, description} = req.body;
+    let { name, password, semester, description } = req.body;
     if (!name || !password || !semester || !description) {
       res.status(400).json({ error: "Incomplete data" });
     } else {
       let avatar = await Avatar.findOne({ name: name });
       if (avatar) {
-        res.status(400).json({ error: "Other user already exists with this name" });
+        res
+          .status(400)
+          .json({ error: "Other user already exists with this name" });
       } else {
         if (req.files) {
           try {
@@ -195,6 +197,11 @@ const register = async (req, res) => {
           password: hash,
           semester: semester,
           description: description,
+          progress: {
+            practice: 0,
+            questions: 0,
+            evaluation: 0,
+          },
         });
         await avatar.save();
         res.json({ register: "register avatar" });
@@ -202,6 +209,30 @@ const register = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ error: error });
+  }
+};
+
+const saveProgress = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const {evaluation, questions, test} = req.body;
+    console.log(evaluation, questions, test);
+    const avatar = await Avatar.findById(userId);
+    evaluation <= 0 ? (evaluation = avatar.progress.evaluation) : evaluation;
+    questions <= 0 ? (questions = avatar.progress.questions) : questions;
+    test <= 0 ? (test = avatar.progress.test) : test;
+    Avatar.findByIdAndUpdate(
+      { _id: userId },
+      {
+        progress: {
+          evaluation: evaluation,
+          questions: questions,
+          practice: test,
+        },
+      }
+    );
+  } catch (err) {
+    res.status(500).json({ error: err });
   }
 };
 
@@ -221,4 +252,5 @@ exports.progress = progress;
 exports.regPractice = regPractice;
 exports.updateStreak = updateStreak;
 exports.userData = userData;
-exports.register = register; 
+exports.register = register;
+exports.saveProgress = saveProgress;

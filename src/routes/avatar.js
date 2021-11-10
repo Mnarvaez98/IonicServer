@@ -25,4 +25,6 @@ router.post("/register", avatar.register);
 
 router.post("/sendEmail/:id", mailer.sendEmail);
 
+router.put("/saveProgress/:userId",avatar.saveProgress);
+
 module.exports = router;

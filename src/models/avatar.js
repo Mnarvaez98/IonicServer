@@ -15,6 +15,11 @@ const AvatarSchema = new mongoose.Schema({
   password: String,
   semester: String,
   description: String,
+  progress:{
+    practice: Number,
+    questions: Number,
+    evaluation: Number,
+  },
 });
 
 AvatarSchema.methods.generateJWT = function () {

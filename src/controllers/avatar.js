@@ -216,7 +216,7 @@ const saveProgress = async (req, res) => {
   try {
     const { userId } = req.params;
     console.log(userId);
-    const { evaluation, questions, test } = req.body;
+    let { evaluation, questions, test } = req.body;
     console.log(evaluation, questions, test);
     const avatar = await Avatar.findById(userId);
     evaluation <= 0 ? (evaluation = avatar.progress.evaluation) : evaluation;

@@ -240,6 +240,7 @@ const saveProgress = async (req, res) => {
 const getActual = async (req, res) => {
   try {
     const avatar = await Avatar.findById(req.params.userId);
+    console.log(avatar.progress.questions, avatar.progress.evaluation, avatar.progress.practice);
     res
       .status(200)
       .json({

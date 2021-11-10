@@ -231,6 +231,7 @@ const saveProgress = async (req, res) => {
         },
       }
     );
+    res.status(200).json({ update: "updated" });
   } catch (err) {
     res.status(500).json({ error: err });
   }

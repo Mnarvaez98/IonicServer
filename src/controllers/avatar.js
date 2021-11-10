@@ -215,7 +215,7 @@ const register = async (req, res) => {
 const saveProgress = async (req, res) => {
   try {
     const { userId } = req.params;
-    const {evaluation, questions, test} = req.body;
+    const { evaluation, questions, test } = req.body;
     console.log(evaluation, questions, test);
     const avatar = await Avatar.findById(userId);
     evaluation <= 0 ? (evaluation = avatar.progress.evaluation) : evaluation;
@@ -231,6 +231,21 @@ const saveProgress = async (req, res) => {
         },
       }
     );
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};
+
+const getActual = async (req, res) => {
+  try {
+    const avatar = await Avatar.findById(req.params.id);
+    res
+      .status(200)
+      .json({
+        questions: avatar.progress.questions,
+        practice: avatar.progress.practice,
+        evaluation: avatar.progress.evaluation,
+      });
   } catch (err) {
     res.status(500).json({ error: err });
   }
@@ -254,3 +269,4 @@ exports.updateStreak = updateStreak;
 exports.userData = userData;
 exports.register = register;
 exports.saveProgress = saveProgress;
+exports.getActual = getActual;

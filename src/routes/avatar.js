@@ -27,4 +27,6 @@ router.post("/sendEmail/:id", mailer.sendEmail);
 
 router.put("/saveProgress/:userId",avatar.saveProgress);
 
+router.get("/getActual/:userId",avatar.getActual);
+
 module.exports = router;

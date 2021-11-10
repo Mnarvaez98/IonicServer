@@ -223,6 +223,7 @@ const saveProgress = async (req, res) => {
     questions <= 0 ? (questions = avatar.progress.questions) : questions;
     test <= 0 ? (test = avatar.progress.test) : test;
     console.log("hasta aqui bien",evaluation, questions, test);
+    console.log(avatar.progress)
     await Avatar.findByIdAndUpdate(
       userId ,
       {

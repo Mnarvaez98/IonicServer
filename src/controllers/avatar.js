@@ -238,7 +238,7 @@ const saveProgress = async (req, res) => {
 
 const getActual = async (req, res) => {
   try {
-    const avatar = await Avatar.findById(req.params.id);
+    const avatar = await Avatar.findById(req.params.userId);
     res
       .status(200)
       .json({

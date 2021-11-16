@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const avatar = require('../controllers/avatar');
 const mailer = require("../controllers/mailer");
+const isAdmin = require("../middlewares/admin");
 
 router.get("/streak/:id" , avatar.getStreakDays);
 
@@ -28,5 +29,7 @@ router.post("/sendEmail/:id", mailer.sendEmail);
 router.put("/saveProgress/:userId",avatar.saveProgress);
 
 router.get("/getActual/:userId",avatar.getActual);
+
+router.get("/getUsers",isAdmin.isAdmin,avatar.getUsers);
 
 module.exports = router;

@@ -202,6 +202,7 @@ const register = async (req, res) => {
             questions: 0,
             evaluation: 0,
           },
+          isAdmin: false,
         });
         await avatar.save();
         res.json({ register: "register avatar" });
@@ -221,7 +222,7 @@ const saveProgress = async (req, res) => {
     const avatar = await Avatar.findById(userId);
     evaluation <= 0 ? (evaluation = avatar.progress.evaluation) : evaluation;
     questions <= 0 ? (questions = avatar.progress.questions) : questions;
-    test <= 0 ? (test = avatar.progress.test) : test;
+    test <= 0 ? (test = avatar.progress.practice) : test;
     console.log("hasta aqui bien",evaluation, questions, test);
     console.log(avatar.progress)
     await Avatar.findByIdAndUpdate(
@@ -256,6 +257,15 @@ const getActual = async (req, res) => {
   }
 };
 
+const getUsers = async (req, res) => {
+  try {
+    const users = await Avatar.find({});
+    res.status(200).json({ users: users });
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+}
+
 function trunc(x, posiciones = 2) {
   let s = x.toString();
   let decimalLength = s.indexOf(".") + 1;
@@ -275,3 +285,4 @@ exports.userData = userData;
 exports.register = register;
 exports.saveProgress = saveProgress;
 exports.getActual = getActual;
+exports.getUsers = getUsers;

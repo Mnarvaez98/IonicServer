@@ -20,6 +20,7 @@ const AvatarSchema = new mongoose.Schema({
     questions: Number,
     evaluation: Number,
   },
+  isAdmin: Boolean,
 });
 
 AvatarSchema.methods.generateJWT = function () {

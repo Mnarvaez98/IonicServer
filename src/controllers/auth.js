@@ -8,7 +8,7 @@ const login = async (req, res) => {
     const hash = await bcrypt.compare(req.body.password, avatar.password);
     !hash ? res.status(400).json({ error: "Invalid password" }) : null;
     const jwtToken = avatar.generateJWT();
-    res.status(200).json({ token: jwtToken , user: avatar._id});
+    res.status(200).json({ token: jwtToken , user: avatar._id, admin: avatar.isAdmin});
   } catch (error) {
     res.status(500).json({ error: "error" });
   }

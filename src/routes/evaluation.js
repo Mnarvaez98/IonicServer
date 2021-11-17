@@ -4,4 +4,4 @@ const Evaluation = require('../controllers/evaluation.js');
 
 router.get('/getall', Evaluation.getAllEvaluations);
 
-module.exports = router;
+module.exports = router; 

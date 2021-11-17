@@ -30,6 +30,7 @@ router.put("/saveProgress/:userId",avatar.saveProgress);
 
 router.get("/getActual/:userId",avatar.getActual);
 
-router.get("/getUsers/:userId",isAdmin.isAdmin,avatar.getUsers);
+router.get("/getUsers/:userId",avatar.getUsers);
+// isAdmin.isAdmin,
 
 module.exports = router;

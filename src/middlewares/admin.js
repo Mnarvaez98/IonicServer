@@ -5,6 +5,7 @@ const isAdmin = (req, res, next) => {
         const { userId } = req.params;
         console.log(userId);
         const avatar = Avatar.findById(userId);
+        console.log(avatar);
         console.log(avatar.isAdmin);
         avatar.isAdmin ? next() : res.status(400).json({ error: "not admin" });
     } catch (error) {

@@ -1,10 +1,10 @@
 const Avatar = require("../models/avatar");
 
-const isAdmin = (req, res, next) => {
+const isAdmin = async (req, res, next) => {
     try {
         const { userId } = req.params;
         console.log(userId);
-        const avatar = Avatar.findById(userId);
+        const avatar = await Avatar.findById(userId);
         console.log(avatar);
         console.log(avatar.isAdmin);
         avatar.isAdmin ? next() : res.status(400).json({ error: "not admin" });

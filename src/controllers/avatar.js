@@ -133,13 +133,13 @@ const progress = async (req, res) => {
     const resEvaluation = trunc(progress.evaluation/evaluation);
     const total = trunc((practicelist + preguntaslist + progress.evaluation) / (voces + preguntas));
 
-    const progress = {
+    const baseProgress = {
       practica: practica,
       preguntas: preguntas1,
       evluation: resEvaluation,
       total: total,
     };
-    res.json({ progress: progress });
+    res.json({ progress: baseProgress });
   } catch (error) {
     console.log(error);
   }

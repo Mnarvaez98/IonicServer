@@ -136,7 +136,7 @@ const progress = async (req, res) => {
     const baseProgress = {
       practica: practica,
       preguntas: preguntas1,
-      evluation: resEvaluation,
+      evaluation: resEvaluation,
       total: total,
     };
     res.json({ progress: baseProgress });

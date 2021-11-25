@@ -2,6 +2,7 @@ const moment = require("moment");
 const Avatar = require("../models/avatar");
 const Voces = require("../models/voces");
 const Preguntas = require("../models/preguntas");
+const Evaluation = require("../models/evaluation");
 const uploadImg = require("../utils/img");
 const bcrypt = require("bcryptjs/dist/bcrypt");
 
@@ -112,7 +113,7 @@ const resolve = async (req, res) => {
 
 const progress = async (req, res) => {
   try {
-    let { practicelist, preguntaslist } = await Avatar.findById({
+    let { practicelist, preguntaslist,progress } = await Avatar.findById({
       _id: req.params.userId,
     });
     practicelist = practicelist.length;
@@ -124,13 +125,18 @@ const progress = async (req, res) => {
     let preguntas = await Preguntas.find({});
     preguntas = preguntas.length;
 
+    let evaluation = await Evaluation.find({});
+    evaluation = evaluation.length;
+
     const practica = trunc(practicelist / voces);
     const preguntas1 = trunc(preguntaslist / preguntas);
-    const total = trunc((practicelist + preguntaslist) / (voces + preguntas));
+    const resEvaluation = trunc(progress.evaluation/evaluation);
+    const total = trunc((practicelist + preguntaslist + progress.evaluation) / (voces + preguntas));
 
     const progress = {
       practica: practica,
       preguntas: preguntas1,
+      evluation: resEvaluation,
       total: total,
     };
     res.json({ progress: progress });

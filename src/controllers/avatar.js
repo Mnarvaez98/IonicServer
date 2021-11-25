@@ -113,9 +113,10 @@ const resolve = async (req, res) => {
 
 const progress = async (req, res) => {
   try {
-    let { practicelist, preguntaslist,progress } = await Avatar.findById({
+    let { practicelist, preguntaslist, progress } = await Avatar.findById({
       _id: req.params.userId,
     });
+    console.log(progress)
     practicelist = practicelist.length;
     preguntaslist = preguntaslist.length;
 
@@ -125,18 +126,18 @@ const progress = async (req, res) => {
     let preguntas = await Preguntas.find({});
     preguntas = preguntas.length;
 
-    let evaluation = await Evaluation.find({});
-    evaluation = evaluation.length;
+    // let evaluation = await Evaluation.find({});
+    // evaluation = evaluation.length;
 
     const practica = trunc(practicelist / voces);
     const preguntas1 = trunc(preguntaslist / preguntas);
-    const resEvaluation = trunc(progress.evaluation/evaluation);
-    const total = trunc((practicelist + preguntaslist + progress.evaluation) / (voces + preguntas));
+    // const resEvaluation = trunc(progress.evaluation/evaluation);
+    const total = trunc((practicelist + preguntaslist ) / (voces + preguntas));
 
     const baseProgress = {
       practica: practica,
       preguntas: preguntas1,
-      evluation: resEvaluation,
+      // evluation: resEvaluation,
       total: total,
     };
     res.json({ progress: baseProgress });
